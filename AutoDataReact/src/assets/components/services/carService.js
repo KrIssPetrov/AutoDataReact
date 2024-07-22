@@ -17,3 +17,11 @@ export const getLatest = async () => {
     const result = await request.get(`${baseUrl}?sortBy=_createdOn%20desc&${query}`);
     return result;
 }
+
+
+
+export const updateCar = async (updateCar) => {
+    const result = await request.put(`${baseUrl}/${updateCar._id}`,
+    updateCar);
+    return result;
+}

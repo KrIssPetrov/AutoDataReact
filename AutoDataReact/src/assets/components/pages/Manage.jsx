@@ -6,15 +6,21 @@ import { Button } from 'primereact/button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import EditDetailsModal from './EditDetailsModal';
 
 const Manage = () => {
     const { auth } = useContext(AuthContext);
     const [cars, setCars] = useState([]);
     const [selectedCar, setSelectedCar] = useState(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isModalEditVisible, setIsModalEditVisible] = useState(false);
     const [sortOption, setSortOption] = useState('');
 
+    
+
+
     useEffect(() => {
+        
         const fetchCars = async () => {
             try {
                 const cars = await carService.getCars();
@@ -28,14 +34,43 @@ const Manage = () => {
     }, []);
 
     const showCarDetails = (car) => {
+        console.log('show');
         setSelectedCar(car);
         setIsModalVisible(true);
     };
 
+
+    const editCar = (car) => {
+        setSelectedCar(car);
+        setIsModalEditVisible(true);
+    };
+
+
+    const updateCar = async (updatedCar) => {
+
+      
+        try {
+            const updatedCarData = await carService.updateCar(updatedCar);
+
+          
+            setCars((prevCars) =>
+                prevCars.map((car) => (car._id === updatedCarData._id ? updatedCarData : car))
+            );
+            setIsModalEditVisible(false);
+        } catch (error) {
+            console.error('Failed to update car:', error);
+        }
+    };
     const hideCarDetails = () => {
         setSelectedCar(null);
         setIsModalVisible(false);
     };
+
+    const hideEditCarDetails = () => {
+        setSelectedCar(null);
+        setIsModalEditVisible(false);
+    };
+
 
     const sortCars = (option) => {
         let sortedCars = [...cars];
@@ -81,13 +116,15 @@ const Manage = () => {
                                         <h5 className="card-title">{car.make}</h5>
                                         <p className="card-text">{car.description}</p>
                                         <p className="card-text"><strong>Price:</strong> ${car.price}/per day</p>
-                                        {auth.accessToken ? (
-                                            <Button label="View Details" icon="pi pi-search" className="p-button-secondary" onClick={() => showCarDetails(car)} />
-                                        ) :
-                                            (
-                                                <p><Link to='/login'>Login</Link> for more information</p>
 
-                                            )}
+                                        <Button label="View Details" icon="pi pi-search" className="p-button-info" onClick={() => showCarDetails(car)} />
+                                   
+                                        {auth._id == car._ownerId && (
+                                            <>
+                                                <Button label="Edit car details" icon="pi pi-search" className="p-button-secondary" onClick={() => editCar(car)} />
+                                                <Button label="Remove car" icon="pi pi-search" className="p-button-danger" onClick={() => removeCar(car)} />
+                                            </>
+                                        )}
                                     </div>
                                 </Card>
                             </div>
@@ -96,6 +133,8 @@ const Manage = () => {
                     {!cars.length && <p className="text-center">No cars yet</p>}
                 </div>
                 <CarDetailsModal car={selectedCar} visible={isModalVisible} onHide={hideCarDetails} />
+                <EditDetailsModal car={selectedCar} visible={isModalEditVisible} onHide={hideEditCarDetails} updateCar={updateCar} />
+            
             </main>
         </>
     )
