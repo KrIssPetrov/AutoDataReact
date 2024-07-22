@@ -30,3 +30,9 @@ export const removeCar = async (id) => {
     const result = await request.remove(`${baseUrl}/${id}`);
     return result;
 }
+
+export const createCar = async (data) => {
+    const result = await request.post(`${baseUrl}`,
+    data);
+    return result;
+}

@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import EditDetailsModal from './EditDetailsModal';
 import Swal from 'sweetalert2';
 import { CircleSpinnerOverlay } from 'react-spinner-overlay'
+import AddCarModal from './AddCarModal';
 
 const Manage = () => {
     const { auth } = useContext(AuthContext);
@@ -16,11 +17,10 @@ const Manage = () => {
     const [selectedCar, setSelectedCar] = useState(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isModalEditVisible, setIsModalEditVisible] = useState(false);
+    const [isModalCreateVisible, setIsModalCreateVisible] = useState(false);
+
     const [sortOption, setSortOption] = useState('');
     const [loading, setLoading] = useState(false);
-
-
-
 
     useEffect(() => {
         setLoading(true)
@@ -52,6 +52,16 @@ const Manage = () => {
     const hideEditCarDetails = () => {
         setSelectedCar(null);
         setIsModalEditVisible(false);
+    };
+
+    const showCreateCar = () => {
+
+        setIsModalCreateVisible(true);
+    };
+
+    const hideCreateCar = () => {
+
+        setIsModalCreateVisible(false);
     };
 
     const editCar = (car) => {
@@ -110,6 +120,28 @@ const Manage = () => {
     }
 
 
+    const createCar = async (data) => {
+
+        setLoading(true)
+        try {
+            const createCarData = await carService.createCar(data);
+
+            setCars((prevCars) => [
+                ...prevCars,
+                createCarData
+            ])
+
+            
+
+            setIsModalCreateVisible(false);
+            setLoading(false)
+        } catch (error) {
+            console.error('Failed to add new car:', error);
+            setLoading(false)
+        }
+    };
+
+
 
 
     const sortCars = (option) => {
@@ -136,7 +168,7 @@ const Manage = () => {
                     <h2>Welcome to Rent A Car</h2>
                     <p>Choose from our latest collection of cars and enjoy your ride!</p>
                 </div>
-                <input  type='button' value={'Add new car'} ></input>
+                <input type='button' value={'Add new car'} onClick={showCreateCar} ></input>
                 <div id="home-page" className="mb-5">
                     <h4 className="mb-4">View all avaible cars</h4>
                     <div className="d-flex justify-content-end mb-4">
@@ -178,6 +210,7 @@ const Manage = () => {
                 </div>
                 <CarDetailsModal car={selectedCar} visible={isModalVisible} onHide={hideCarDetails} />
                 <EditDetailsModal car={selectedCar} visible={isModalEditVisible} onHide={hideEditCarDetails} updateCar={updateCar} />
+                <AddCarModal visible={isModalCreateVisible} onHide={hideCreateCar} createCar={createCar} />
 
             </main>
         </>
