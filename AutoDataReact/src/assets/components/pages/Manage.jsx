@@ -8,6 +8,7 @@ import AuthContext from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 import EditDetailsModal from './EditDetailsModal';
 import Swal from 'sweetalert2';
+import { CircleSpinnerOverlay } from 'react-spinner-overlay'
 
 const Manage = () => {
     const { auth } = useContext(AuthContext);
@@ -16,18 +17,21 @@ const Manage = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isModalEditVisible, setIsModalEditVisible] = useState(false);
     const [sortOption, setSortOption] = useState('');
+    const [loading, setLoading] = useState(false);
 
 
 
 
     useEffect(() => {
-
+        setLoading(true)
         const fetchCars = async () => {
             try {
                 const cars = await carService.getCars();
                 setCars(cars);
+                setLoading(false)
             } catch (error) {
                 console.error('Failed to fetch cars:', error);
+                setLoading(false)
             }
         };
 
@@ -57,7 +61,7 @@ const Manage = () => {
 
     const updateCar = async (updatedCar) => {
 
-
+        setLoading(true)
         try {
             const updatedCarData = await carService.updateCar(updatedCar);
 
@@ -66,8 +70,10 @@ const Manage = () => {
                 prevCars.map((car) => (car._id === updatedCarData._id ? updatedCarData : car))
             );
             setIsModalEditVisible(false);
+            setLoading(false)
         } catch (error) {
             console.error('Failed to update car:', error);
+            setLoading(false)
         }
     };
 
@@ -82,15 +88,16 @@ const Manage = () => {
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-
+                setLoading(true)
                 try {
                     carService.removeCar(car._id)
 
                     setCars((prevCars) => prevCars.filter(c => c._id !== car._id));
 
-                  
+                    setLoading(false)
                 } catch (error) {
                     console.error('Failed to remove car:', error);
+                    setLoading(false)
                 }
 
                 Swal.fire("Removed!", "", "success");
@@ -120,12 +127,16 @@ const Manage = () => {
 
     return (
         <>
-            <main className='container mt-5'>
+            <main className='cosntainer mt-5'>
+                <CircleSpinnerOverlay
+                    loading={loading}
+                    overlayColor="rgba(0,153,255,0.2)"
+                />
                 <div className="text-center mb-5">
                     <h2>Welcome to Rent A Car</h2>
                     <p>Choose from our latest collection of cars and enjoy your ride!</p>
                 </div>
-
+                <input  type='button' value={'Add new car'} ></input>
                 <div id="home-page" className="mb-5">
                     <h4 className="mb-4">View all avaible cars</h4>
                     <div className="d-flex justify-content-end mb-4">

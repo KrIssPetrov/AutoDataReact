@@ -6,6 +6,7 @@ import { Button } from 'primereact/button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import { CircleSpinnerOverlay } from 'react-spinner-overlay'
 
 const Vehicles = () => {
     const { auth } = useContext(AuthContext);
@@ -13,14 +14,17 @@ const Vehicles = () => {
     const [selectedCar, setSelectedCar] = useState(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [sortOption, setSortOption] = useState('');
-
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
+        setLoading(true);
         const fetchCars = async () => {
             try {
                 const cars = await carService.getCars();
                 setCars(cars);
+                setLoading(false);
             } catch (error) {
                 console.error('Failed to fetch cars:', error);
+                setLoading(false);
             }
         };
 
@@ -53,6 +57,10 @@ const Vehicles = () => {
     return (
         <>
             <main className='container mt-5'>
+            <CircleSpinnerOverlay
+      　　loading={loading} 
+       overlayColor="rgba(0,153,255,0.2)"
+      />
                 <div className="text-center mb-5">
                     <h2>Welcome to Rent A Car</h2>
                     <p>Choose from our latest collection of cars and enjoy your ride!</p>
@@ -61,6 +69,7 @@ const Vehicles = () => {
                 <div id="home-page" className="mb-5">
                     <h4 className="mb-4">View all avaible cars</h4>
                     <div className="d-flex justify-content-end mb-4">
+                       
                         <select
                             className="form-select w-auto"
                             value={sortOption}
