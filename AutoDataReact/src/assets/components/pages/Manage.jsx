@@ -55,7 +55,7 @@ const Manage = () => {
             <main className='container mt-5'>
                 <div className="text-center mb-5">
                     <h2>Welcome to Rent A Car</h2>
-                    <p>Choose from our latest collection of cars and enjoy your ride!</p>
+                    <p>Choose from our latest collection of cars and enjoy your ride!123156</p>
                 </div>
 
                 <div id="home-page" className="mb-5">
