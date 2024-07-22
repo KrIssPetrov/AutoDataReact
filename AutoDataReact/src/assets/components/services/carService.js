@@ -25,3 +25,8 @@ export const updateCar = async (updateCar) => {
     updateCar);
     return result;
 }
+
+export const removeCar = async (id) => {
+    const result = await request.remove(`${baseUrl}/${id}`);
+    return result;
+}

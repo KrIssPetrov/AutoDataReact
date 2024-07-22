@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 import EditDetailsModal from './EditDetailsModal';
+import Swal from 'sweetalert2';
 
 const Manage = () => {
     const { auth } = useContext(AuthContext);
@@ -16,11 +17,11 @@ const Manage = () => {
     const [isModalEditVisible, setIsModalEditVisible] = useState(false);
     const [sortOption, setSortOption] = useState('');
 
-    
+
 
 
     useEffect(() => {
-        
+
         const fetchCars = async () => {
             try {
                 const cars = await carService.getCars();
@@ -39,28 +40,6 @@ const Manage = () => {
         setIsModalVisible(true);
     };
 
-
-    const editCar = (car) => {
-        setSelectedCar(car);
-        setIsModalEditVisible(true);
-    };
-
-
-    const updateCar = async (updatedCar) => {
-
-      
-        try {
-            const updatedCarData = await carService.updateCar(updatedCar);
-
-          
-            setCars((prevCars) =>
-                prevCars.map((car) => (car._id === updatedCarData._id ? updatedCarData : car))
-            );
-            setIsModalEditVisible(false);
-        } catch (error) {
-            console.error('Failed to update car:', error);
-        }
-    };
     const hideCarDetails = () => {
         setSelectedCar(null);
         setIsModalVisible(false);
@@ -70,6 +49,60 @@ const Manage = () => {
         setSelectedCar(null);
         setIsModalEditVisible(false);
     };
+
+    const editCar = (car) => {
+        setSelectedCar(car);
+        setIsModalEditVisible(true);
+    };
+
+    const updateCar = async (updatedCar) => {
+
+
+        try {
+            const updatedCarData = await carService.updateCar(updatedCar);
+
+
+            setCars((prevCars) =>
+                prevCars.map((car) => (car._id === updatedCarData._id ? updatedCarData : car))
+            );
+            setIsModalEditVisible(false);
+        } catch (error) {
+            console.error('Failed to update car:', error);
+        }
+    };
+
+    const removeCar = async (car) => {
+
+        Swal.fire({
+            title: `Do you want to remove  ${car.make}?`,
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Remove",
+            denyButtonText: `Don't remove`
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+
+                try {
+                    carService.removeCar(car._id)
+
+                    setCars((prevCars) => prevCars.filter(c => c._id !== car._id));
+
+                  
+                } catch (error) {
+                    console.error('Failed to remove car:', error);
+                }
+
+                Swal.fire("Removed!", "", "success");
+            } else if (result.isDenied) {
+                Swal.fire("Car is not removed", "", "info");
+            }
+        });
+
+
+    }
+
+
 
 
     const sortCars = (option) => {
@@ -90,7 +123,7 @@ const Manage = () => {
             <main className='container mt-5'>
                 <div className="text-center mb-5">
                     <h2>Welcome to Rent A Car</h2>
-                    <p>Choose from our latest collection of cars and enjoy your ride!123156</p>
+                    <p>Choose from our latest collection of cars and enjoy your ride!</p>
                 </div>
 
                 <div id="home-page" className="mb-5">
@@ -118,7 +151,7 @@ const Manage = () => {
                                         <p className="card-text"><strong>Price:</strong> ${car.price}/per day</p>
 
                                         <Button label="View Details" icon="pi pi-search" className="p-button-info" onClick={() => showCarDetails(car)} />
-                                   
+
                                         {auth._id == car._ownerId && (
                                             <>
                                                 <Button label="Edit car details" icon="pi pi-search" className="p-button-secondary" onClick={() => editCar(car)} />
@@ -134,7 +167,7 @@ const Manage = () => {
                 </div>
                 <CarDetailsModal car={selectedCar} visible={isModalVisible} onHide={hideCarDetails} />
                 <EditDetailsModal car={selectedCar} visible={isModalEditVisible} onHide={hideEditCarDetails} updateCar={updateCar} />
-            
+
             </main>
         </>
     )
