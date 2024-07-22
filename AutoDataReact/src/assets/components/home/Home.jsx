@@ -42,7 +42,7 @@ const Home = () => {
     return (
         <main className='container mt-5'>
             <div className="text-center mb-5">
-                <h2>Welcome to Rent A Car Catalog</h2>
+                <h2>Welcome to Sirenie BG</h2>
                 <p>Choose from our latest collection of cars and enjoy your ride!</p>
             </div>
             <div className="text-center mb-5">

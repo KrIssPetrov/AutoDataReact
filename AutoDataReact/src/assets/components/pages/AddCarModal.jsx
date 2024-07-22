@@ -30,6 +30,9 @@ const AddCarModal = ({  visible, onHide, createCar }) => {
         onHide();
     };
 
+
+
+
     return (
         <Dialog header={'Create new car'} visible={visible} style={{ width: '50vw' }} onHide={onHide}>
            
@@ -59,6 +62,8 @@ const AddCarModal = ({  visible, onHide, createCar }) => {
                     <input name='description' value={values.description} onChange={onChangeInfo}></input>
                     <br/>
                 </div>
+
+                {values.img && <img src={values.img} alt={values.make} className="img-fluid" />}
             
             <div className="flex justify-content-end mt-4">
                 <Button label="Save" icon="pi pi-check" onClick={handleSubmit} />
