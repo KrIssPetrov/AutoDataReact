@@ -15,6 +15,9 @@ const Vehicles = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [sortOption, setSortOption] = useState('');
     const [loading, setLoading] = useState(false);
+
+
+    
     useEffect(() => {
         setLoading(true);
         const fetchCars = async () => {
@@ -83,7 +86,7 @@ const Vehicles = () => {
                     </div>
                     <div className="row">
                         {cars.map(car => (
-                            <div key={car.id} className="col-12 col-md-6 col-lg-4 mb-4">
+                            <div key={car._id} className="col-12 col-md-6 col-lg-4 mb-4">
                                 <Card className="h-100">
                                     <img src={car.img} alt={car.make} className="card-img-top" style={{ height: '200px', objectFit: 'cover' }} />
                                     <div className="card-body">

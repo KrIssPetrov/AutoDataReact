@@ -18,6 +18,7 @@ import Logout from './assets/components/auth/Logout';
 import Vehicles from './assets/components/pages/Vehicles';
 import HeaderWeb from './assets/components/headers/Header';
 import Manage from './assets/components/pages/Manage';
+import ContactManage from './assets/components/pages/ContactManage,.jsx';
 
 function App() {
 
@@ -41,7 +42,8 @@ function App() {
           <Route element={<AuthGuard />}>
 
             {/* Admin Controll Panel */}
-            <Route path="/manage" element={<Manage />} />
+            <Route path="/manage" element={<Manage />} />  
+                <Route path="/contactManage" element={<ContactManage />} />
             {/* <Route path="/edit-vehicle" element={<EditVehicles />} />
             <Route path="/get-all-vehicles" element={<GetAllVehicles />} /> */}
             {/* ************** */}

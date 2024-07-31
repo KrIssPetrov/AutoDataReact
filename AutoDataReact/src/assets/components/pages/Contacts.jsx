@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import *  as authService  from './../services/authService';
 
 
 
@@ -8,57 +9,113 @@ const Contacts = () => {
 
     
 
-    const [productItems, setProductItems] = useState([]);
+    const [users, setUsers] = useState([]);
 
 
 
     // useEffect(() => {
-    //     fetch('http://localhost:3030/data/products')
-    //         .then(response => response.json())
-    //         .then(response => setProductItems(Object.values(response)))
-    //         .catch(error => console.error(error));
-    // }, [])
+    //     const fetchUsers = async () => {
+    //         try {
+    //             const user = await authService.getUsers();
+    //             setUsers(user);
+    //         } catch (error) {
+    //             console.error('Failed to fetch user:', error);
+    //         }
+    //     };
+
+    //     fetchUsers();
+    // }, []);
 
  
 
     return (
         <>
-            <div className="container h-cont">
-                <div className="row justify-content-center mb-5 pb-3 mt-5 pt-5">
-                    <div className="col-md-7 heading-section text-center ftco-animate">
-                        <h2 className="mb-4">Contacts</h2>
-                        <p className="flip"><span className="deg1"></span><span className="deg2"></span><span className="deg3"></span></p>
-                        <p className="mt-5">Contact form .</p>
-                    </div>
-                </div>
+             <main id="main" className="main">
 
+<div className="pagetitle">
+  <h1>Contact</h1>
 
+</div>
 
-                {/* CATEGORIES ******************************** */}
-                {/* <div className="col-md-12 nav-link-wrap mb-5">
-                    <div className="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a className="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Пица</a>
+<section className="section contact">
 
-                        <a className="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Напики</a>
+  <div className="row gy-4">
 
-                        <a className="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Burgers</a>
+    <div className="col-xl-6">
 
-                        <a className="nav-link" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Алкохол</a>
-                    </div>
-                </div> */}
-                {/* ******************************** */}
+      <div className="row">
+        <div className="col-lg-6">
+          <div className="info-box card">
+            <i className="bi bi-geo-alt"></i>
+            <h3>Address</h3>
+            <p>A108 Adam Street,<br/>New York, NY 535022</p>
+          </div>
+        </div>
+        <div className="col-lg-6">
+          <div className="info-box card">
+            <i className="bi bi-telephone"></i>
+            <h3>Call Us</h3>
+            <p>+1 5589 55488 55<br/>+1 6678 254445 41</p>
+          </div>
+        </div>
+        <div className="col-lg-6">
+          <div className="info-box card">
+            <i className="bi bi-envelope"></i>
+            <h3>Email Us</h3>
+            <p>info@example.com<br/>contact@example.com</p>
+          </div>
+        </div>
+        <div className="col-lg-6">
+          <div className="info-box card">
+            <i className="bi bi-clock"></i>
+            <h3>Open Hours</h3>
+            <p>Monday - Friday<br/>9:00AM - 05:00PM</p>
+          </div>
+        </div>
+      </div>
 
+    </div>
 
-                {/* <div className="row">
-                    {productItems.map((productItem, index) => (
-                        <div key={productItem._id} className={`col-md-6 ${index % 2 === 0 ? 'order-md-1' : 'order-md-2'}`}>
-                            <MenuItem {...productItem} />
-                          
-                        </div>
-                    ))}
-                </div> */}
-            </div >
+    <div className="col-xl-6">
+      <div className="card p-4">
+        <form action="forms/contact.php" method="post" className="php-email-form">
+          <div className="row gy-4">
 
+            <div className="col-md-6">
+              <input type="text" name="name" className="form-control" placeholder="Your Name" required/>
+            </div>
+
+            <div className="col-md-6 ">
+              <input type="email" className="form-control" name="email" placeholder="Your Email" required/>
+            </div>
+
+            <div className="col-md-12">
+              <input type="text" className="form-control" name="subject" placeholder="Subject" required/>
+            </div>
+
+            <div className="col-md-12">
+              <textarea className="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+            </div>
+
+            <div className="col-md-12 text-center">
+              <div className="loading">Loading</div>
+              <div className="error-message"></div>
+              <div className="sent-message">Your message has been sent. Thank you!</div>
+
+              <button type="submit">Send Message</button>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
         </>
 
     )

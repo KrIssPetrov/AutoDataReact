@@ -33,6 +33,8 @@ const EditDetailsModal = ({ car, visible, onHide, updateCar }) => {
 
     const onChangeInfo = (e) => {
         const { name, value } = e.target;
+
+        console.log(e.target.name, e.target.value);
         setValues(state => ({
             ...state,
             [name]: value

@@ -7,7 +7,7 @@ import './../../css/style.css';
 
 export default function HeaderWeb(props) {
     const { auth, logoutHandler } = useContext(AuthContext);
-
+   
     return (
         <header id="header" className="header fixed-top d-flex align-items-center">
             <div className="d-flex align-items-center justify-content-between">
@@ -15,11 +15,9 @@ export default function HeaderWeb(props) {
                     {/* <img src="assets/img/logo.png" alt=""> */}
                     <span className="d-none d-lg-block">Inspire Car</span>
                 </Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
+
             </div>
-          
+
 
             <nav className="header-nav ms-auto">
                 <ul className="d-flex  align-items-center">
@@ -35,14 +33,20 @@ export default function HeaderWeb(props) {
                     <li className="nav-item m-2">
                         <Link className="nav-link m-2" to="/about">About</Link>
                     </li>
-                    <li className="nav-item m-2">
-                        <Link className="nav-link m-2" to="/faq">FAQ</Link>
-                    </li>
+
+                    {auth.accessToken && auth.role == 1 && (
+                        <li className="nav-item m-2">
+                            <Link className="nav-link m-2" to="/contactManage">Contacts Manage</Link>
+                        </li>
+
+                    )
+                    }
+
                     {auth.accessToken ? (
                         <>
-                           <li className="nav-item m-2">
-                        <Link className="nav-link m-2" to="/manage">Manage</Link>
-                    </li>
+                            <li className="nav-item m-2">
+                                <Link className="nav-link m-2" to="/manage">Manage</Link>
+                            </li>
                             <li className="nav-item dropdown pe-3">
                                 <a className="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                                     {/* <img src="assets/img/profile-img.jpg" alt="Profile" className="rounded-circle"> */}

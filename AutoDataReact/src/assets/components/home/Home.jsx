@@ -8,6 +8,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import * as carService from '../services/carService';
 import AuthContext from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const { auth } = useContext(AuthContext)
@@ -27,7 +28,7 @@ const Home = () => {
 
         fetchCars();
     }, []);
-   
+
     const showCarDetails = (car) => {
         setSelectedCar(car);
         setIsModalVisible(true);
@@ -38,11 +39,11 @@ const Home = () => {
         setIsModalVisible(false);
     };
 
- 
+
     return (
         <main className='container mt-5'>
             <div className="text-center mb-5">
-                <h2>Welcome to Sirenie BG</h2>
+                <h2>Welcome to Auto Data</h2>
                 <p>Choose from our latest collection of cars and enjoy your ride!</p>
             </div>
             <div className="text-center mb-5">
@@ -50,19 +51,26 @@ const Home = () => {
             </div>
             <div id="home-page">
                 <h4 className="mb-4">Latest Cars</h4>
-                <div className="row">
+                <div  className="row">
                     {latestCars.map(car => (
-                        <div key={car.id} className="col-12 col-md-6 col-lg-4 mb-4">
-                           
+                        <div key={car._id} className="col-12 col-md-6 col-lg-4 mb-4">
+
                             <Card className="h-100">
                                 <img src={car.img} alt={car.make} className="card-img-top" style={{ height: '200px', objectFit: 'cover' }} />
                                 <div className="card-body">
                                     <h5 className="card-title">{car.make}</h5>
                                     <p className="card-text">{car.description}</p>
-                                    {auth.accessToken && (
+                                    {/* {auth.accessToken && (
                                         <Button label="View Details" icon="pi pi-search" className="p-button-secondary" onClick={() => showCarDetails(car)} />
 
-                                    )}
+                                    ) } */}
+
+                                     {auth.accessToken ? (
+                                        <Button label="View Details" icon="pi pi-search" className="p-button-secondary" onClick={() => showCarDetails(car)} />
+
+                                    ) : (
+                                    <div><Link to='/Login'>Login</Link> to view details</div>
+                                    )} 
                                 </div>
                             </Card>
                         </div>

@@ -19,15 +19,9 @@ export default function Login() {
     });
 
     return (
-
-
-
         <main>
-
-
-
             <div className="container">
-                <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                     <div className="row justify-content-center">
                         <div className="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                             <div className="card mb-3">
@@ -40,7 +34,7 @@ export default function Login() {
                                     <form onSubmit={onSubmit} className="row g-3 needs-validation" >
 
                                         <div className="col-12">
-                                            <label for="yourUsername" className="form-label">Username</label>
+                                            <label htmlFor="yourUsername" className="form-label">Username</label>
                                             <div className="input-group has-validation">
                                                 <span className="input-group-text" id="inputGroupPrepend">@</span>
 
@@ -58,7 +52,7 @@ export default function Login() {
                                         </div>
 
                                         <div className="col-12">
-                                            <label for="yourPassword" className="form-label">Password</label>
+                                            <label htmlFor="yourPassword" className="form-label">Password</label>
                                             <input
                                                 type="password"
                                                 id="login-password"
