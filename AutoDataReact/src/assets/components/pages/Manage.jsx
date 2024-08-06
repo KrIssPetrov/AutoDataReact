@@ -10,6 +10,7 @@ import EditDetailsModal from './EditDetailsModal';
 import Swal from 'sweetalert2';
 import { CircleSpinnerOverlay } from 'react-spinner-overlay'
 import AddCarModal from './AddCarModal';
+import { ButtonGroup } from 'primereact/buttongroup';
 
 const Manage = () => {
     const { auth } = useContext(AuthContext);
@@ -131,7 +132,7 @@ const Manage = () => {
                 createCarData
             ])
 
-            
+
 
             setIsModalCreateVisible(false);
             setLoading(false)
@@ -168,7 +169,7 @@ const Manage = () => {
                     <h2>Welcome to Rent A Car</h2>
                     <p>Choose from our latest collection of cars and enjoy your ride!</p>
                 </div>
-                <input type='button' value={'Add new car'} onClick={showCreateCar} ></input>
+                <input type='button'  className='btn btn-warning' value={'Add new car'} onClick={showCreateCar} ></input>
                 <div id="home-page" className="mb-5">
                     <h4 className="mb-4">View all avaible cars</h4>
                     <div className="d-flex justify-content-end mb-4">
@@ -185,22 +186,25 @@ const Manage = () => {
                     </div>
                     <div className="row">
                         {cars.map(car => (
-                            <div key={car.id} className="col-12 col-md-6 col-lg-4 mb-4">
+                            <div key={car.id} className="col-12 col-md-4 col-md-6 mb-4">
                                 <Card className="h-100">
                                     <img src={car.img} alt={car.make} className="card-img-top" style={{ height: '200px', objectFit: 'cover' }} />
                                     <div className="card-body">
                                         <h5 className="card-title">{car.make}</h5>
-                                        <p className="card-text">{car.description}</p>
-                                        <p className="card-text"><strong>Price:</strong> ${car.price}/per day</p>
+                                        <div className='d-flex justify-content-center'>
+                                            <div className='btn-group py-2 px-2'>
+                                                <Button label="View" icon="pi pi-search" className="p-button-info mx-2 my-1" onClick={() => showCarDetails(car)} />
 
-                                        <Button label="View Details" icon="pi pi-search" className="p-button-info" onClick={() => showCarDetails(car)} />
+                                                {auth._id === car._ownerId && (
+                                                    <>
+                                                        <Button label="Edit" icon="pi pi-user-edit" className="p-button-secondary mx-2 my-1" onClick={() => editCar(car)} />
+                                                        <Button label="Remove" icon="pi pi-trash" className="p-button-danger mx-2 my-1" onClick={() => removeCar(car)} />
+                                                    </>
+                                                )}
+                                            </div>
+                                        </div>
 
-                                        {auth._id == car._ownerId && (
-                                            <>
-                                                <Button label="Edit car details" icon="pi pi-search" className="p-button-secondary" onClick={() => editCar(car)} />
-                                                <Button label="Remove car" icon="pi pi-search" className="p-button-danger" onClick={() => removeCar(car)} />
-                                            </>
-                                        )}
+
                                     </div>
                                 </Card>
                             </div>

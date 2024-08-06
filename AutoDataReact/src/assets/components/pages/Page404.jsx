@@ -7,10 +7,8 @@ export default function Page404() {
             <h1>404</h1>
             <h2>The page you are looking for doesn't exist.</h2>
             <a class="btn" href="/">Back to home</a>
-        
           <br></br>
             <div class="credits">
-            
               Designed by <a target="_blank" href="https:/facebook.com/Shawty9104">Kristiyan Krustev</a>
             </div>
           </section>

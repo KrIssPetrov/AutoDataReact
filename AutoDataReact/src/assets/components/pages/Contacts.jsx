@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import *  as authService from './../services/authService';
+import *  as contactService from './../services/contactService';
 import Swal from 'sweetalert2';
 
 
@@ -9,8 +9,23 @@ import Swal from 'sweetalert2';
 const Contacts = () => {
 
 
+  const [contacts, setContacts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const fetchContacts = async () => {
+      try {
+        const contacts = await contactService.getContacts();
+        setContacts(contacts);
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to fetch contacts:', error);
+        setLoading(false);
+      }
+    };
 
+    fetchContacts();
+  }, []);
 
 
 
@@ -120,6 +135,45 @@ const Contacts = () => {
           </div>
 
         </section>
+
+
+        <main className='container mt-5'>
+
+          {loading ? (
+            <div className='text-center'>
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          ) : (
+            <table className='table table-striped table-hover'>
+              <thead className='thead-dark'>
+                <tr>
+                  <th scope='col'>#</th>
+                  <th scope='col'>Contact Name</th>
+                  <th scope='col'>Description</th>
+                  <th scope='col'>Image</th>
+                </tr>
+              </thead>
+              <tbody>
+                {contacts.map((contact, index) => (
+                  <tr key={contact.id}>
+                    <th scope='row'>{index + 1}</th>
+                    <td>{contact.contactName}</td>
+                    <td>{contact.description}</td>
+                    <td>
+                      <img
+                        src={contact.img}
+                        style={{ width: '50px', height: '50px', objectFit: 'cover' }}
+                        alt={contact.contactName}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </main>
 
       </main>
     </>

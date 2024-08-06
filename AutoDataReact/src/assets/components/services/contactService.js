@@ -8,22 +8,18 @@ export const getContacts = async () => {
     return result;
 };
 
-
-
-
-
-export const updateContacts = async (data) => {
+export const updateContact = async (data) => {
     const result = await request.put(`${baseUrl}/${data._id}`,
     data);
     return result;
 }
 
-export const removeContacts = async (id) => {
+export const removeContact = async (id) => {
     const result = await request.remove(`${baseUrl}/${id}`);
     return result;
 }
 
-export const createContacts = async (data) => {
+export const createContact = async (data) => {
     const result = await request.post(`${baseUrl}`,
     data);
     return result;

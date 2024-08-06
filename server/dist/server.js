@@ -1518,17 +1518,17 @@
     	contacts: {
     		"833e0e57-71dc-42c0-b387-0ce0caf5225e": {
     			_ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
-    			contactName: "Ivan",
+    			contactName: "Ashley",
     			description: "Owner of the best pilates studio in town",
-    			img: "./images/best-pilates-youtube-workouts-2__medium_4x3.jpg",
+    			img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwme89cM8YZvHcybGrZl_Obd9U9p5QabozJQ&s",
     			_createdOn: 1615033373504,
     			_id: "833e0e57-71dc-42c0-b387-0ce0caf5225e"
     		},
     		"247efaa7-8a3e-48a7-813f-b5bfdad0f46c": {
     			_ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
-    			contactName: "Georgi",
+    			contactName: "Pesho Georgiev",
     			description: "Sponsor of the best pilates studio in town",
-    			img: "./images/brightideacropped.jpg",
+    			img: "https://miro.medium.com/v2/resize:fit:785/0*Ggt-XwliwAO6QURi.jpg",
     			_createdOn: 1615033452480,
     			_id: "247efaa7-8a3e-48a7-813f-b5bfdad0f46c"
     		},
@@ -1536,7 +1536,7 @@
     			_ownerId: "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
     			contactName: "Dimityr",
     			description: "New user-friendly recipe for dinner",
-    			img: "./images/dinner.jpg",
+    			img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC8kiSH5ZSAcVoj3tAQQDoP_ux0sSricMyUg&s",
     			_createdOn: 1615033491967,
     			_id: "b8608c22-dd57-4b24-948e-b358f536b958"
     		}

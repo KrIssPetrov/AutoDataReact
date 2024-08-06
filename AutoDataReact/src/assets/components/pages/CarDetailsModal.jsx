@@ -29,7 +29,7 @@ const CarDetailsModal = ({ car, visible, onHide }) => {
             ) : (
                 <p>No details available</p>
             )}
-            <Button label="Close" icon="pi pi-times" onClick={onHide} />
+            <Button label="Close" severity="danger" icon="pi pi-times" onClick={onHide} />
         </Dialog>
     );
 };

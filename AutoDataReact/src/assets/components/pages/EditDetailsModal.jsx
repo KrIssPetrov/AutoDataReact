@@ -50,36 +50,45 @@ const EditDetailsModal = ({ car, visible, onHide, updateCar }) => {
         <Dialog header={`Edit car ${car?.make}`} visible={visible} style={{ width: '50vw' }} onHide={onHide}>
             {car ? (
                 <div className='flex flex-col'>
-                    <label>Make</label>
-                    <input name='make' value={values.make} onChange={onChangeInfo}></input>
-                    
+                    <div class="row mb-3">
+                         <label>Make</label>
+                    <input name='make' className='form-control' value={values.make} onChange={onChangeInfo}></input>
+                    </div>
+                    <div class="row mb-3">
                     <label>Model</label>
-                    <input name='model' value={values.model} onChange={onChangeInfo}></input>
-                    
+                    <input name='model'  className='form-control' value={values.model} onChange={onChangeInfo}></input>
+                    </div>
+                    <div class="row mb-3">
                     <label>Image</label>
-                    <input name='img' value={values.img} onChange={onChangeInfo}></input>
-                    
+                    <input name='img'   className='form-control' value={values.img} onChange={onChangeInfo}></input>
+                    </div>
+                    <div class="row mb-3">
                     <label>Material</label>
-                    <input name='material' value={values.material} onChange={onChangeInfo}></input>
-                    
+                    <input name='material' className='form-control' value={values.material} onChange={onChangeInfo}></input>
+                    </div>
+                    <div class="row mb-3">
                     <label>Weight</label>
-                    <input name='weight' value={values.weight} onChange={onChangeInfo}></input>
-                    
+                    <input name='weight'  className='form-control' value={values.weight} onChange={onChangeInfo}></input>
+                    </div>
+                    <div class="row mb-3">
                     <label>Year</label>
-                    <input name='year' value={values.year} onChange={onChangeInfo}></input>
-                    
+                    <input name='year'  className='form-control' value={values.year} onChange={onChangeInfo}></input>
+                    </div>
+                    <div class="row mb-3">
                     <label>Price</label>
-                    <input name='price' value={values.price} onChange={onChangeInfo}></input>
-                    
+                    <input name='price'  className='form-control' value={values.price} onChange={onChangeInfo}></input>
+                    </div>
+                    <div class="row mb-3">
                     <label>Description</label>
-                    <input name='description' value={values.description} onChange={onChangeInfo}></input>
+                    <input name='description'  className='form-control' value={values.description} onChange={onChangeInfo}></input>
+                    </div>
                 </div>
             ) : (
                 <p>No details available</p>
             )}
             <div className="flex justify-content-end mt-4">
-                <Button label="Save" icon="pi pi-check" onClick={handleSubmit} />
-                <Button label="Close" icon="pi pi-times" onClick={onHide} className="ml-2" />
+                <Button label="Save"  icon="pi pi-check" onClick={handleSubmit} />
+                <Button label="Close" severity="danger" icon="pi pi-times" onClick={onHide} className="ml-2" />
             </div>
         </Dialog>
     );
