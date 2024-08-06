@@ -32,7 +32,7 @@ const Register = () => {
                 <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                     <div className="container">
                         <div className="row justify-content-center">
-                            <div className="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                            <div className="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                                 <div className="card mb-3">
 
@@ -129,7 +129,7 @@ const Register = () => {
                                 </div>
 
                                 <div className="credits">
-
+                                Designed by <a target='_blank'href="https:/facebook.com/Shawty9104">Kristiyan Krustev</a>
                                 </div>
 
                             </div>

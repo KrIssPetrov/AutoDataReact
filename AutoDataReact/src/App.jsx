@@ -19,6 +19,8 @@ import Vehicles from './assets/components/pages/Vehicles';
 import HeaderWeb from './assets/components/headers/Header';
 import Manage from './assets/components/pages/Manage';
 import ContactManage from './assets/components/pages/ContactManage,.jsx';
+import Page404 from './assets/components/pages/Page404.jsx';
+import About from './assets/components/pages/About.jsx';
 
 function App() {
 
@@ -32,6 +34,8 @@ function App() {
           <Route>
             {/* Without login */}
             <Route path="/" element={<Home />} />
+            <Route path="*" element={<Page404 />} />
+            <Route path="/about" element={<About />} />
             <Route path="/vehicles" element={<Vehicles />} />
             <Route path="/contacts" element={<Contacts />} />
             <Route path="/login" element={<Login />} />

@@ -92,7 +92,7 @@ const Vehicles = () => {
                                     <div className="card-body">
                                         <h5 className="card-title">{car.make}</h5>
                                         <p className="card-text">{car.description}</p>
-                                        <p className="card-text"><strong>Price:</strong> ${car.price}/per day</p>
+                                        {/* <p className="card-text"><strong>Price:</strong> ${car.price}/per day</p> */}
                                         {auth.accessToken ? (
                                             <Button label="View Details" icon="pi pi-search" className="p-button-secondary" onClick={() => showCarDetails(car)} />
                                         ) :

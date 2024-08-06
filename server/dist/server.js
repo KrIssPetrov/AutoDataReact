@@ -1580,6 +1580,19 @@
     			_createdOn: 1615546332126,
     			_id: "c7f51805-242b-45ed-ae3e-80b68605141b",
                 weight: 800
+    		},
+            "c7f51805-242b-45ed-ae3e-7f5180524d": {
+    			_ownerId: "847ec027-f659-4086-8032-5173e2f9c93a",
+    			make: "Seat",
+    			model: "Ibiza",
+    			year: 2007,
+    			description: "1.9 TDI",
+    			price: 280,
+    			img: "https://autobild.bg/wp-content/uploads/2021/04/Seat-Ibiza-SPERRFRIST-15-April-2021-10-15-Uhr-4502x2530-c4f53c1cd3f2f849-scaled.jpg",
+    			material: "Wood laminate; leather",
+    			_createdOn: 1615546332126,
+    			_id: "c7f51805-242b-45ed-ae3e-7f5180524d",
+                weight: 1200
     		}
     	},
     	teams: {

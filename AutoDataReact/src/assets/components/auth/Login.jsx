@@ -21,9 +21,9 @@ export default function Login() {
     return (
         <main>
             <div className="container">
-                <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <section className="section register min-vh-100 d-flex flex-column align-items-center justify-content-center ">
                     <div className="row justify-content-center">
-                        <div className="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                        <div className="col-lg-6 col-md-6 d-flex flex-column align-items-center justify-content-center">
                             <div className="card mb-3">
                                 <div className="card-body">
                                     <div className="pt-4 pb-2">
@@ -31,7 +31,7 @@ export default function Login() {
                                         <p className="text-center small">Enter your username & password to login</p>
                                     </div>
 
-                                    <form onSubmit={onSubmit} className="row g-3 needs-validation" >
+                                    <form onSubmit={onSubmit} className="row g-3 " >
 
                                         <div className="col-12">
                                             <label htmlFor="yourUsername" className="form-label">Username</label>
@@ -39,8 +39,8 @@ export default function Login() {
                                                 <span className="input-group-text" id="inputGroupPrepend">@</span>
 
                                                 <input
-                                                    type="email"
-                                                    id="email"
+                                                    // type="email"
+                                                    // id="email"
                                                     name='email'
                                                     className="form-control"
                                                     placehoelder="Enter email"

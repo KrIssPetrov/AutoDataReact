@@ -15,25 +15,37 @@ export const AuthProvider = ({
 }) => {
     const navigate = useNavigate();
     const [auth, setAuth] = usePersistedState('auth', {});
-  
+
 
 
     const loginSubmitHandler = async (values) => {
-    
-        const result = await authService.login(values.email, values.password);
-      
-        setAuth(result);
-             
-        localStorage.setItem('accessToken', result.accessToken);
-        
-        navigate("/");
-  
+        try {
+            const result = await authService.login(values.email, values.password);
 
-        
+            setAuth(result);
+
+            localStorage.setItem('accessToken', result.accessToken);
+
+            navigate("/");
+
+        } catch (error) {
+
+            Swal.fire({
+
+                icon: "error",
+                title: `Invalid email or password !`,
+                showConfirmButton: false,
+                timer: 1500,
+
+            });
+        }
+
+
+
     };
 
     const registerSubmitHandler = async (values) => {
-  
+
         // if((values.pass || values.confPass || values.name || values.email) ==''){
         //     Swal.fire({
         //         position: "top-end",
@@ -65,13 +77,13 @@ export const AuthProvider = ({
 
         // }
 
-       
+
 
         const result = await authService.register(values.email, values.password, values.username); // Register only with role 2
 
         setAuth(result);
 
-        
+
         // localStorage.removeItem('basket');
         localStorage.setItem('accessToken', result.accessToken);
 
@@ -85,7 +97,7 @@ export const AuthProvider = ({
         setAuth({});
 
 
-        
+
     };
 
     const values = {
@@ -97,7 +109,7 @@ export const AuthProvider = ({
         userId: auth._id,
         isAuthenticated: !!auth.accessToken,
         role: auth.role,
-        auth:auth,
+        auth: auth,
     };
 
     return (

@@ -8,7 +8,6 @@ export const login = async (email, password) => {
         password,
     });
 
-    
     return result;
 };
 

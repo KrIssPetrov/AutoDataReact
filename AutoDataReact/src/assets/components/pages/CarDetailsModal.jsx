@@ -9,12 +9,22 @@ const CarDetailsModal = ({ car, visible, onHide }) => {
 
 
     return (
-        <Dialog header={car?.make} visible={visible} style={{ width: '50vw' }} onHide={onHide}>
+        <Dialog header={car?.make} visible={visible} style={{ width: '30vw' }} onHide={onHide}>
             {car ? (
                 <div>
-                    <img src={car.img} alt={car.make} style={{ width: '100%', height: 'auto' }} />
-                    <p>{car.description}</p>
+                    <img src={car.img} alt={car.make} style={{ width: '80%', height: '40%', marginLeft:'60px' }} />
+                    <div className='text-center'>
+
+                    <p>Make: <b>{car.make}</b> </p>
+                    <p>Model: <b>{car.model}</b></p>
+                    <p>Description: <b>{car.description}</b></p>
+                    <p>Weight:  <b>{car.weight}</b> kg</p>
+                    <p>Price: <b>{car.price}</b> $/per day</p>
+                    <p>Year: <b>{car.year}</b></p>
+                    <p>Material:<b>{car.material}</b> </p>
+                    {/* <p>{car._ownerId}</p> */}
                     {/* Add more car details here */}
+                    </div>
                 </div>
             ) : (
                 <p>No details available</p>
